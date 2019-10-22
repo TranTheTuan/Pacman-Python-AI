@@ -193,7 +193,6 @@ def aStarSearch(problem, heuristic=nullHeuristic):
                 path.push((nextState, nextActions, nextCost), nextHeuristic)
     util.raiseNotDefined()
 
-
 # Abbreviations
 bfs = breadthFirstSearch
 dfs = depthFirstSearch

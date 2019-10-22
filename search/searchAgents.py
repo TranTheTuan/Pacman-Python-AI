@@ -306,7 +306,7 @@ class CornersProblem(search.SearchProblem):
         xy = state[0] 
         visitedCorners = state[1]
         if xy in self.corners:
-            if not xy in visitedCorners:
+            if not xy in visitedCorners:    
                 visitedCorners.append(xy)
             return len(visitedCorners) == 4
         return False
@@ -330,7 +330,7 @@ class CornersProblem(search.SearchProblem):
             #
             # state[0] la vi tri hien tai, state[1] la ds goc da tham
             x, y = state[0]
-            visitedCorners = state[1]
+            visitedCorners = list(state[1])
             # lay ra tuple toa do tu action
             dx, dy = Actions.directionToVector(action)
             # tinh toa do tiep theo
@@ -339,10 +339,9 @@ class CornersProblem(search.SearchProblem):
             # neu toa do tiep theo khong phai tuong
             if not self.walls[nextx][nexty]:
                 nextState = (nextx, nexty)
-                visitedList = list(visitedCorners)
                 if nextState in self.corners and nextState not in state[1]:
-                    visitedList.append(nextState)
-                successors.append(((nextState, visitedList), action, 1))
+                    visitedCorners.append(nextState)
+                successors.append(((nextState, visitedCorners), action, 1))
 
         self._expanded += 1  # DO NOT CHANGE
         return successors
@@ -356,7 +355,8 @@ class CornersProblem(search.SearchProblem):
         x,y= self.startingPosition
         for action in actions:
             dx, dy = Actions.directionToVector(action)
-            x, y = int(x + dx), int(y + dy)
+            x = int(x + dx)
+            y = int(y + dy)
             if self.walls[x][y]: return 999999
         return len(actions)
 
