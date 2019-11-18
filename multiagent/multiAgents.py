@@ -81,7 +81,7 @@ class ReflexAgent(Agent):
         ghostDistances = []
         count = 0 
 
-        #tinh khoang cach tu moi food
+        #tinh khoang cach den moi food
         for item in food:
             foodDistances.append(manhattanDistance(newPos,item))
 
@@ -163,6 +163,13 @@ class MinimaxAgent(MultiAgentSearchAgent):
             Returns the total number of agents in the game
         """
         "*** YOUR CODE HERE ***"
+
+        """
+            miniMax: nhan vao state, agent(0,1,2...) va depth hien tai
+            miniMax: return: [cost,action]
+            vi du: depth = 3
+            pac man va ghost choi 3 lan
+        """
         def miniMax(gameState,agent,depth):
             result = []
 
@@ -180,7 +187,7 @@ class MinimaxAgent(MultiAgentSearchAgent):
 
             # tinh nextAgent
 
-            # ghost cuoi cung: nextAgent = pacman
+            # ghost cuoi cung di chuyen: nextAgent = pacman
             if agent == gameState.getNumAgents() - 1:
                 nextAgent = self.index
 
